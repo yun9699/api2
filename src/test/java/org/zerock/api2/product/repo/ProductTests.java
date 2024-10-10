@@ -10,6 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
+import org.zerock.api2.common.dto.PageRequestDTO;
+import org.zerock.api2.common.dto.PageResponseDTO;
+import org.zerock.api2.product.dto.ProductListDTO;
 import org.zerock.api2.product.repository.ProductRepository;
 
 
@@ -45,5 +48,15 @@ public class ProductTests {
 
         log.info("00000000");
         log.info(productRepository.read(15L));
+    }
+
+    @Test
+    public void testDTOList() {
+        PageRequestDTO requestDTO = PageRequestDTO.builder().build();
+
+        PageResponseDTO<ProductListDTO> result
+                = productRepository.list(requestDTO);
+
+        log.info(result);
     }
 }
