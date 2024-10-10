@@ -5,7 +5,9 @@ import lombok.ToString;
 
 @Entity
 @ToString(exclude = "product")
-@Table(name = "tbl_review")
+@Table(name = "tbl_review", indexes = {
+        @Index(name = "idx_review_product", columnList = "product_pno")
+})
 public class Review {
 
     @Id

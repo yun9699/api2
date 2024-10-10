@@ -39,4 +39,11 @@ public class ProductTests {
 
         productRepository.listWithReplyCount(pageable);
     }
+
+    @Test
+    public void testRead() {
+
+        log.info("00000000");
+        log.info(productRepository.read(15L));
+    }
 }

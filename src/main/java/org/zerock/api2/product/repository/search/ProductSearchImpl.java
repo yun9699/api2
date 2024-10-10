@@ -1,6 +1,7 @@
 package org.zerock.api2.product.repository.search;
 
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.zerock.api2.product.domain.Product;
 import org.zerock.api2.product.domain.ProductStatus;
 import org.zerock.api2.product.domain.QProduct;
 import org.zerock.api2.product.domain.QReview;
+import org.zerock.api2.product.dto.ProductListDTO;
 
 import java.util.List;
 
@@ -73,15 +75,27 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
 
         this.getQuerydsl().applyPagination(pageable, query);
 
-        JPQLQuery<Tuple> tupleJPQLQuery = query.select
-                (product.pno, product.pname, product.price, review.count(), review.score.avg().coalesce(0.0));
+        JPQLQuery<ProductListDTO> dtoJPQLQuery = query.select
+                (Projections.bean(ProductListDTO.class,
+                        product.pno,
+                        product.pname,
+                        product.price,
+                        review.count().as("reviewCnt"),
+                        review.score.avg().coalesce(0.0).as("avgScore")
+                )
+                );
 
         log.info("============================");
-        log.info(tupleJPQLQuery);
+        log.info(dtoJPQLQuery);
 
-        List<Tuple> tupleList = tupleJPQLQuery.fetch();
+        List<ProductListDTO> dtoList = dtoJPQLQuery.fetch();
 
-        Long total = tupleJPQLQuery.fetchCount();
+
+        log.info("============================!!!!");
+        //dtoList.forEach(productListDTO -> log.info(productListDTO));
+        dtoList.forEach(log::info);
+
+        Long total = dtoJPQLQuery.fetchCount();
 
         return null;
     }
