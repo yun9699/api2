@@ -74,7 +74,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
         this.getQuerydsl().applyPagination(pageable, query);
 
         JPQLQuery<Tuple> tupleJPQLQuery = query.select
-                (product.pno, product.pname, product.price, review.count(), review.score.avg());
+                (product.pno, product.pname, product.price, review.count(), review.score.avg().coalesce(0.0));
 
         log.info("============================");
         log.info(tupleJPQLQuery);
