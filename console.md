@@ -34,3 +34,25 @@ order by
 p1_0.pno desc
 limit
 0, 10
+
+
+단일 클래스 (엔티티)
+- C,R,U,D
+
+- Querydsl 동적쿼리
+
+- Projections
+- @Query에서 사용하는 법
+- Querydsl에서 select를 해서 사용하는 법
+
+연관관계 - ManyToOne
+- 단방향 참조
+- C
+- R
+- Querydsl
+- left join - group by
+
+VO - @ElementCollection
+- @EntityGraph
+- Querydsl에서 사용법
+- @Bathsize , fetchJoin() - limit
