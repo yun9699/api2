@@ -1,7 +1,10 @@
 package org.zerock.api2.product.domain;
 
+
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = "tags")
 @Table(name = "tbl_product")
 public class Product {
 
@@ -28,16 +31,18 @@ public class Product {
     @ElementCollection
     @CollectionTable(name = "tbl_product_tag")
     @Builder.Default
+    @BatchSize(size = 100)
     private Set<String> tags = new HashSet<>();
 
     public void addTag(String tag) {
-        tags.add(tag);
+        this.tags.add(tag);
     }
+
     public void removeTag(String tag) {
-        tags.remove(tag);
+        this.tags.remove(tag);
     }
-    public void clearTages() {
-        tags.clear();
+
+    public void clearTags() {
+        this.tags.clear();
     }
 }
-
