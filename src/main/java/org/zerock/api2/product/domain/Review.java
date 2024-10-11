@@ -34,6 +34,11 @@ public class Review {
     @CollectionTable(name = "tbl_review_img")
     private Set<ContentImage> images = new HashSet<>();
 
+    public void addFile(String filename){
+        ContentImage image = new ContentImage(images.size(),filename);
+        images.add(image);
+    }
+
     public void changeImages(Set<ContentImage> images) {
         this.images = images;
     }
