@@ -23,7 +23,7 @@ import org.zerock.api2.product.repository.ProductRepository;
 public class ProductTests {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepository 1;
 
     @Test
     @Transactional
@@ -31,7 +31,7 @@ public class ProductTests {
 
         Pageable pageable = PageRequest.of(0,10, Sort.by("pno").descending());
 
-        productRepository.list1(pageable);
+        ProductRepository.list1(pageable);
 
     }
 
@@ -40,22 +40,21 @@ public class ProductTests {
 
         Pageable pageable = PageRequest.of(0,10, Sort.by("pno").descending());
 
-        productRepository.listWithReplyCount(pageable);
+        ProductRepository.listWithReplyCount(pageable);
     }
 
     @Test
     public void testRead() {
 
         log.info("00000000");
-        log.info(productRepository.read(15L));
+        log.info(ProductRepository.read(15L));
     }
 
     @Test
     public void testDTOList() {
         PageRequestDTO requestDTO = PageRequestDTO.builder().build();
-
         PageResponseDTO<ProductListDTO> result
-                = productRepository.list(requestDTO);
+                = ProductRepository.list(requestDTO);
 
         log.info(result);
     }
