@@ -30,17 +30,21 @@ public class ReviewTests {
 
         Product product = Product.builder().pno(15L).build();
 
-        Set<ContentImage> images = new HashSet<>();
-        images.add(new ContentImage(0,"aaa.jpg"));
-        images.add(new ContentImage(1,"bbb.jpg"));
-        images.add(new ContentImage(2,"ccc.jpg"));
+//        Set<ContentImage> images = new HashSet<>();
+//        images.add(new ContentImage(0,"aaa.jpg"));
+//        images.add(new ContentImage(1,"bbb.jpg"));
+//        images.add(new ContentImage(2,"ccc.jpg"));
 
         Review review = Review.builder()
                 .reviewer("r1")
                 .score(5)
                 .product(product)
-                .images(images)
+//            .images(images)
                 .build();
+
+        review.addFile("AAA.jpg");
+        review.addFile("BAA.jpg");
+        review.addFile("CAA.jpg");
 
         reviewRepository.save(review);
     }
