@@ -32,6 +32,7 @@ public class Review {
 
     @ElementCollection
     @CollectionTable(name = "tbl_review_img")
+    @Builder.Default
     private Set<ContentImage> images = new HashSet<>();
 
     public void addFile(String filename){
