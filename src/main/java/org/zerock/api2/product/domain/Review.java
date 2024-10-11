@@ -1,6 +1,9 @@
 package org.zerock.api2.product.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.HashSet;
@@ -11,6 +14,9 @@ import java.util.Set;
 @Table(name = "tbl_review", indexes = {
         @Index(name = "idx_review_product", columnList = "product_pno")
 })
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Review {
 
     @Id
