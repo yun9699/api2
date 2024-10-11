@@ -69,7 +69,21 @@ public class ReviewTests {
 //            log.info("-------------------!!");
 //        });
 
+    }
 
+    @Test
+    public void testListAllImages() {
+
+        Product product = Product.builder().pno(15L).build();
+
+        Pageable pageable =
+                PageRequest.of(0,10, Sort.by("rno").descending());
+        reviewRepository.findByProduct(product,pageable)
+                .get().forEach(review -> {
+                    log.info(review);
+                    log.info(review.getImages());
+                    log.info("--------------------");
+                });
 
 
     }
