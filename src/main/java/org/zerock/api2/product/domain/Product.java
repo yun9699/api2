@@ -27,6 +27,7 @@ public class Product {
 
     @ElementCollection
     @CollectionTable(name = "tbl_product_tag")
+    @Builder.Default
     private Set<String> tags = new HashSet<>();
 
     public void addTag(String tag) {
