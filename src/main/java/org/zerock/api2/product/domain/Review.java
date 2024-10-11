@@ -26,9 +26,9 @@ public class Review {
 
     @ElementCollection
     @CollectionTable(name = "tbl_review_img")
-    private Set<ReviewImage> images = new HashSet<>();
+    private Set<ContentImage> images = new HashSet<>();
 
-    public void changeImages(Set<ReviewImage> images) {
+    public void changeImages(Set<ContentImage> images) {
         this.images = images;
     }
 }

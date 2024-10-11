@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 //빌더 사용 안했음 여기에
-public class ReviewImage {
+public class ContentImage {
 
     private int ord;
     private String filename;
