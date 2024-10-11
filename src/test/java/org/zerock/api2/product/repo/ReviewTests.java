@@ -59,7 +59,7 @@ public class ReviewTests {
         Pageable pageable =
                 PageRequest.of(0,10, Sort.by("rno").descending());
 
-        reviewRepository.listByProduct(15L,pageable);
+        reviewRepository.listByProductQuery(15L,pageable);
 
 //        result.getContent().forEach(review -> { // entity처리시 n+1 문제 -> dto를 이용.
 //
