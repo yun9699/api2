@@ -1,13 +1,19 @@
 package org.zerock.api2.product.repository.search;
 
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.JPQLQuery;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.zerock.api2.product.domain.QContentImage;
 import org.zerock.api2.product.domain.QReview;
 import org.zerock.api2.product.domain.Review;
 
+import java.util.List;
+
+@Log4j2
 public class ReviewSearchImpl extends QuerydslRepositorySupport implements ReviewSearch {
 
     public ReviewSearchImpl() {
@@ -27,11 +33,21 @@ public class ReviewSearchImpl extends QuerydslRepositorySupport implements Revie
 
         this.getQuerydsl().applyPagination(pageable, query);
 
-        query.fetch(); // 쿼리돌아가는지 확인
+        JPQLQuery<Tuple> tupleQuery =
+                query.select(review.rno, review.score, review.images);
 
+        List<Tuple>TupleList = tupleQuery.fetch();
 
-
+        TupleList.forEach(tuple -> {
+            log.info(tuple);
+        });
 
         return null;
+
+//        List<Review> list = query.fetch();
+//        long total = query.fetchCount();
+//
+//        return new PageImpl<>(list, pageable, total);
+
     }
 }
